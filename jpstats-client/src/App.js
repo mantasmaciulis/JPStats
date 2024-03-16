@@ -7,10 +7,10 @@ import Dashboard from './pages/Dashboard/Dashboard'; // Make sure to import Dash
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path='/' element={<Dashboard />} />
       </Routes>
     </div>
   );
