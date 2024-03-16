@@ -1,0 +1,29 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .dashboard .recently-learned {
+    grid-column: 1 / 2; 
+  }
+  
+  .dashboard .progress-to-jlpt {
+    grid-column: 2 / 3;
+  }
+  
+  .dashboard .words-by-memory,
+  .dashboard .grammar-progress {
+    grid-column: 1 / -1;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard {
+      grid-template-columns: 1fr;
+    }
+    .dashboard .card {
+      grid-column: 1 / -1;
+    }
+  }
+  
