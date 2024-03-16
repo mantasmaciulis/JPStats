@@ -3,7 +3,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import Dashboard from './pages/Dashboard/Dashboard'; // Make sure to import Dashboard
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   return (
