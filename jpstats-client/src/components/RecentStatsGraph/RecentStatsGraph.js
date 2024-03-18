@@ -16,56 +16,87 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 export const options = {
   responsive: true,
   maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      callbacks: {
+        label: function (context) {
+          let label = context.dataset.label || "";
+
+          if (label) {
+            label += ": ";
+          }
+          if (context.parsed.y !== null) {
+            label += context.parsed.y;
+          }
+          return label;
+        },
+      },
+    },
+  },
   scales: {
     x: {
       grid: {
-        display: false, // This will hide vertical grid lines
+        display: false,
       },
       ticks: {
-        color: "#D9D9D9", // Set the X-axis tick labels to light gray
+        color: function (context) {
+          if (context.tick && context.tick.label === "Today") {
+            return "#61AE8B";
+          }
+          return "#D9D9D9";
+        },
+
+        font: {
+          weight: "bold",
+        },
       },
     },
     y: {
       beginAtZero: true,
       grid: {
-        color: "#D9D9D9", // Set to light gray color
-        borderWidth: 2, // Make grid lines thicker
-        drawBorder: false, // Optionally remove the axis border
-        drawTicks: false, // Optionally remove the ticks on the grid lines
+        color: "#D9D9D9",
+        borderWidth: 2,
+        drawBorder: false,
+        drawTicks: false,
       },
       ticks: {
-        // Define how often grid lines should appear
-        // For example, if your data ranges from 0 to 40, setting stepSize to 5 will create a grid line every 5 units
         stepSize: 2,
-        color: "#D9D9D9", // Set the tick labels to light gray if you want
+        color: "#D9D9D9",
       },
     },
   },
 };
 
-const labels = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "New words",
-      data: [100, 156, 120, 150, 43, 120, 90],
-      backgroundColor: "rgba(208, 76, 76, 0.85)",
-      borderColor: "rgb(0,0,0)",
-    },
-  ],
-};
 
-function RecentStatsGraph() {
-  return <Bar className="chart" options={options} data={data} />;
+
+
+function getPreviousSixDays() {
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  const today = new Date();
+  let labels = days.slice(today.getDay()).concat(days.slice(0, today.getDay()));
+  labels[labels.length - 1] = "Today";
+  return labels;
+}
+
+function RecentStatsGraph({ graphData }) {
+  const labels = getPreviousSixDays();
+  const newData = {
+    ...graphData,
+    labels,
+  };
+
+  return <Bar className="chart" options={options} data={newData} />;
 }
 export default RecentStatsGraph;

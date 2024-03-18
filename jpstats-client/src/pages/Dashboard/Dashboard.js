@@ -3,12 +3,24 @@ import Card from "../../components/Card/Card";
 import JLPTCard from "../../components/JLPTCard/JLPTCard";
 import RecentStatsGraph from "../../components/RecentStatsGraph/RecentStatsGraph";
 import "./Dashboard.css";
-
+export const data = {
+  datasets: [
+    {
+      label: "New words",
+      data: [100, 156, 120, 150, 43, 120, 90],
+      backgroundColor: "rgba(208, 76, 76, 0.85)",
+      borderColor: "rgb(0,0,0)",
+    },
+  ],
+};
 const Dashboard = () => {
   return (
     <div className="dashboard">
       <Card className="recently-learned" title="Recently Learned Words">
-        <RecentStatsGraph className="grid-item-align-bottom"></RecentStatsGraph>
+        <RecentStatsGraph
+          className="grid-item-align-bottom"
+          graphData={data}
+        ></RecentStatsGraph>
       </Card>
       <JLPTCard
         title="Progress to JLPT N1"
