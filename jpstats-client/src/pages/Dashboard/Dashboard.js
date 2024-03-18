@@ -1,17 +1,23 @@
-import React from 'react';
-import Card from '../../components/Card/Card';
-import './Dashboard.css';
+import React from "react";
+import Card from "../../components/Card/Card";
+import JLPTCard from "../../components/JLPTCard/JLPTCard";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   return (
-    <div className='dashboard'>
-      <Card className='recently-learned' title='Recently Learned Words'></Card>
+    <div className="dashboard">
+      <Card className="recently-learned" title="Recently Learned Words"></Card>
+      <JLPTCard
+        title="Progress to JLPT N1"
+        percentage={75}
+        vocab={3244}
+        days={388}
+        streak={69}
+        consistency={83}
+      />
+      <Card className="words-by-memory" title="Words By Memory Level"></Card>
 
-      <Card className='progress-to-jlpt' title='Progress to JLPT N1'></Card>
-
-      <Card className='words-by-memory' title='Words By Memory Level'></Card>
-
-      <Card className='grammar-progress' title='Grammar Progress'></Card>
+      <Card className="grammar-progress" title="Grammar Progress"></Card>
     </div>
   );
 };
