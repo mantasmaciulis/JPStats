@@ -3,14 +3,21 @@
   grid-template-columns: 2fr 1fr;
   gap: 20px;
   padding: 20px;
+  align-items: start;
 }
 
 .dashboard .recently-learned {
   grid-column: 1 / 2;
+  width: 87%;
+  height: 250px;
 }
 
 .dashboard .progress-to-jlpt {
   grid-column: 2 / 3;
+  height: 250px;
+}
+.recently-learned {
+  display: flex;
 }
 
 .dashboard .words-by-memory,
@@ -22,7 +29,12 @@
   .dashboard {
     grid-template-columns: 1fr;
   }
-  .dashboard .card {
+  .dashboard .progress-to-jlpt {
+    grid-column: 1 / -1;
+    height: auto;
+  }
+  .dashboard .recently-learned {
+    width: 84.8vw;
     grid-column: 1 / -1;
   }
 }

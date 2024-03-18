@@ -1,12 +1,15 @@
 import React from "react";
 import Card from "../../components/Card/Card";
 import JLPTCard from "../../components/JLPTCard/JLPTCard";
+import RecentStatsGraph from "../../components/RecentStatsGraph/RecentStatsGraph";
 import "./Dashboard.css";
 
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <Card className="recently-learned" title="Recently Learned Words"></Card>
+      <Card className="recently-learned" title="Recently Learned Words">
+        <RecentStatsGraph className="grid-item-align-bottom"></RecentStatsGraph>
+      </Card>
       <JLPTCard
         title="Progress to JLPT N1"
         percentage={75}
@@ -15,6 +18,7 @@ const Dashboard = () => {
         streak={69}
         consistency={83}
       />
+
       <Card className="words-by-memory" title="Words By Memory Level"></Card>
 
       <Card className="grammar-progress" title="Grammar Progress"></Card>

@@ -13,23 +13,25 @@ function JLPTCard({ title, percentage, vocab, days, streak, consistency }) {
         height="12px"
         width="100%"
       />
-      <hr className="divider"/>
-      <div className="stats-container">
-        <div className="stat-item">
-          <h2>Total Vocab</h2>
-          <p>{vocab}</p>
-        </div>
-        <div className="stat-item">
-          <h2>Days Studied</h2>
-          <p>{days}</p>
-        </div>
-        <div className="stat-item">
-          <h2>Streak</h2>
-          <p>{streak}</p>
-        </div>
-        <div className="stat-item">
-          <h2>Consistency</h2>
-          <p>{consistency}%</p>
+      <hr className="divider" />
+      <div className="center-wrapper">
+        <div className="stats-container">
+          <div className="stat-item">
+            <h2>Total Vocab</h2>
+            <p>{vocab}</p>
+          </div>
+          <div className="stat-item">
+            <h2>Days Studied</h2>
+            <p>{days}</p>
+          </div>
+          <div className="stat-item">
+            <h2>Streak</h2>
+            <p>{streak}</p>
+          </div>
+          <div className="stat-item">
+            <h2>Consistency</h2>
+            <p>{consistency}%</p>
+          </div>
         </div>
       </div>
     </Card>

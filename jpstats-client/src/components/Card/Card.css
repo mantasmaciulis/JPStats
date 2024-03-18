@@ -5,8 +5,9 @@
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
-  margin: 15px;
   border: 1px solid #d9d9d9;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-header {
@@ -17,4 +18,8 @@
   font-weight: 600;
   display: flex;
   justify-content: space-between;
+}
+.card-content {
+  justify-self: center;
+  height: 100%;
 }
