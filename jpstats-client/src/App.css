@@ -1,21 +1,21 @@
 /* Mobile */
 .dashboard {
-    padding-left: 1%;
-    padding-right: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+/* Tablet */
+@media (min-width: 1148px) {
+  .dashboard {
+    padding-left: 10%;
+    padding-right: 10%;
   }
-  
-  /* Tablet */
-  @media (min-width: 1025px) {
-    .dashboard {
-      padding-left: 10%;
-      padding-right: 10%;
-    }
+}
+
+/* Desktop */
+@media (min-width: 1700px) {
+  .dashboard {
+    padding-left: 15%;
+    padding-right: 15%;
   }
-  
-  /* Desktop */
-  @media (min-width: 1700px) {
-    .dashboard {
-      padding-left: 15%;
-      padding-right: 15%;
-    }
 }

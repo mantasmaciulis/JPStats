@@ -1,0 +1,54 @@
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr); 
+  gap: 20px;
+  padding: 10px;
+  container-type: inline-size;
+  container-name: stats;
+}
+
+.stat-item {
+  color: #cacaca; 
+  border-radius: 10px; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  font-family: "Open Sans", sans-serif;
+}
+.stat-item h2 {
+  margin: 0;
+  font-size: 1em;
+}
+
+.stat-item p {
+  margin: 0;
+  color: #ffff;
+  outline: black;
+  font-size: 2em;
+}
+
+/* Make stats header responsive to container
+   size in order to prevent overflow. */
+@container stats (max-width: 240px) {
+  .stat-item h2 {
+    font-size: 0.9em; 
+  }
+}
+@container stats (min-width: 300px) {
+  .stat-item h2 {
+    font-size: min(4vw, 20px);
+  }
+}
+/* Switch stats to 4x1 and back
+   to 2x2 on approporiate screens*/
+@media (max-width: 928px) {
+  .stats-container {
+    grid-template-columns: repeat(4, 4fr); 
+  }
+}
+@media (max-width: 670px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 2fr);
+  }
+}
