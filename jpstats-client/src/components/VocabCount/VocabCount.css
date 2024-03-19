@@ -1,0 +1,30 @@
+.vocab-count-container {
+  --square-dimension: 100px;
+}
+
+.vocab-count-container {
+    width: var(--square-dimension);
+    height: var(--square-dimension);
+    border: 2px solid white;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 900;
+  }
+  .level {
+    font-size: 24px;
+    color: #569478;
+    -webkit-text-stroke: 1.5px #000000; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  }
+  .count {
+    font-size: 40px;
+    color: #F8FFFC;
+    -webkit-text-stroke: 1.5px #000000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }

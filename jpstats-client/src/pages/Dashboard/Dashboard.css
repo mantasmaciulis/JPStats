@@ -3,12 +3,11 @@
   grid-template-columns: 2fr 1fr;
   gap: 20px;
   padding: 20px;
-  align-items: start;
 }
 
 .dashboard .recently-learned {
   grid-column: 1 / 2;
-  width: 87%;
+  width: 92%;
   height: 250px;
 }
 
@@ -16,16 +15,13 @@
   grid-column: 2 / 3;
   height: 250px;
 }
-.recently-learned {
-  display: flex;
-}
 
 .dashboard .words-by-memory,
 .dashboard .grammar-progress {
   grid-column: 1 / -1;
 }
 
-@media (max-width: 928px) {
+@media (max-width: 975px) {
   .dashboard {
     grid-template-columns: 1fr;
   }
@@ -37,4 +33,9 @@
     width: 84.8vw;
     grid-column: 1 / -1;
   }
+}
+.memory-cards{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
