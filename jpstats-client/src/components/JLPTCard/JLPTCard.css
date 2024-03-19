@@ -2,64 +2,61 @@
   display: grid;
   grid-template-columns: repeat(2, 2fr);
   gap: 20px;
-  justify-content: center; /* Center horizontally */
-  align-content: center; /* Center vertically, works if the container has a defined height */
-  height: 100%; /* Adjust based on your specific needs */
-  width: 100%; /* Adjust based on your specific needs */
+  align-content: center;
+  width: 100%;
   container-name: stats;
   container-type: inline-size;
   padding: 10px;
 }
 .center-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80%; /* or a specific height, depending on your design */
+  height: 80%; 
 }
 
 .stat-item {
   color: #cacaca;
-  border-radius: 10px;
-  font-weight: bold;
+  font-weight: 900;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   font-family: "Open Sans", sans-serif;
 }
 .stat-item h2 {
   margin: 0;
-  font-size: 1em;
-  font-size: 1.5vw;
+  -webkit-text-stroke: 0.7px #000000; 
 }
 
 .stat-item p {
   margin: 0;
   color: #ffff;
-  font-size: 2vw;
-  font-weight: bold;
+  font-size: 2.2vw;
+  -webkit-text-stroke: 1px #000000; 
 }
 
 /* Make stats header responsive to container
    size in order to prevent overflow. */
-@container stats (max-width: 295px) {
+@container stats (max-width: 265px) {
+  .stat-item h2 {
+    font-size: 1.2em;
+  }
+}
+@container stats (max-width: 264px) {
   .stat-item h2 {
     font-size: 1em;
   }
 }
-@container stats (min-width: 300px) {
-  .stat-item h2 {
-    font-size: min(4vw, 20px);
-  }
-}
+
 /* Switch stats to 4x1 and back
    to 2x2 on approporiate screens*/
-@media (max-width: 928px) {
+@media (max-width: 975px) {
   .stats-container {
     grid-template-columns: repeat(4, 4fr);
   }
   .stat-item p {
-    font-size: min(4vw, 20px);
+    font-size: 30px;
+  }
+  .stat-item h2 {
+    font-size: 20px;
   }
   .progress-to-jlpt {
     height: 200px;
@@ -68,5 +65,11 @@
 @media (max-width: 670px) {
   .stats-container {
     grid-template-columns: repeat(2, 2fr);
+  }
+  .stat-item p {
+    font-size: 30px;
+  }
+  .stat-item h2 {
+    font-size: 20px;
   }
 }

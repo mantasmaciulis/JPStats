@@ -2,20 +2,29 @@
 .dashboard {
   padding-left: 5%;
   padding-right: 5%;
+  max-width: 1000px;
+  margin: 0 auto; 
+}
+
+@media (min-width: 1230px) {
+  .dashboard {
+    padding-left: 10%;
+    padding-right:10%;
+  }
 }
 
 /* Tablet */
-@media (min-width: 1148px) {
+@media (min-width: 1248px) {
   .dashboard {
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 15%;
+    padding-right:15%;
   }
 }
 
 /* Desktop */
 @media (min-width: 1700px) {
   .dashboard {
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 20%;
+    padding-right: 20%;
   }
 }
