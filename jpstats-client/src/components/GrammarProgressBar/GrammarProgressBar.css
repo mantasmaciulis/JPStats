@@ -1,0 +1,18 @@
+.grammar-progress-bar {
+    width: 140px;
+    height: 140px;
+    margin: 0 10px 10px 0;
+}
+
+.jlpt-level{
+    font-size: 45px;
+    font-weight: 900;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-text-stroke: 1.5px #000000; 
+}
+.jlpt-progress{
+    font-size: 25px;
+    font-weight: 900;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-text-stroke: 0.8px #000000; 
+}

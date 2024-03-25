@@ -34,8 +34,10 @@
     grid-column: 1 / -1;
   }
 }
-.memory-cards{
+.memory-cards, .progress-wheels{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+

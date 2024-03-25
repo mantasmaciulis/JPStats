@@ -1,0 +1,74 @@
+#heatmap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.heatmap-card {
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+
+.ch-domain-text {
+  font-size: 40px !important;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 900;
+  Color: #D9D9D9;
+}
+
+.divider {
+  height: 3px;
+  border: none;
+  background-color: #D9D9D9;
+}
+.heatmap-options{
+  justify-content: space-between;
+  display: flex;
+  padding: 20px
+
+}
+.toggle-button-group {
+  display: flex;
+  background-color: #D9D9D9;
+
+
+}
+
+.toggle-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #D9D9D9;
+  border: none;
+  outline: none; 
+  font-weight: 900;
+  color: #2E2E2E;
+  transition: background-color 0.3s;
+}
+
+
+.toggle-button.active1 {
+  background-color: #55A6DA; 
+  color: white; 
+  font-weight: 900;
+}
+.toggle-button.active2 {
+  background-color: #ED67A7;
+  color: white; 
+  font-weight: 900;
+}
+
+.toggle-button {
+  width: 130px;
+}
+
+.heatmap-options {
+  display: flex;
+}
+
+.heatmap-options .toggle-button-group:last-child {
+  margin-right: 0;
+}

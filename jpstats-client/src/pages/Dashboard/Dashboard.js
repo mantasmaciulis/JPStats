@@ -4,6 +4,8 @@ import JLPTCard from "../../components/JLPTCard/JLPTCard";
 import RecentStatsGraph from "../../components/RecentStatsGraph/RecentStatsGraph";
 import VocabCount from "../../components/VocabCount/VocabCount";
 import "./Dashboard.css";
+import 'react-circular-progressbar/dist/styles.css';
+import GrammarProgressBar from "../../components/GrammarProgressBar/GrammarProgressBar";
 export const data = {
   datasets: [
     {
@@ -17,12 +19,14 @@ export const data = {
 const Dashboard = () => {
   return (
     <div className="dashboard">
+      
       <Card className="recently-learned" title="Recently Learned Words">
         <RecentStatsGraph
           className="grid-item-align-bottom"
           graphData={data}
         ></RecentStatsGraph>
       </Card>
+
       <JLPTCard
         title="Progress to JLPT N1"
         percentage={75}
@@ -44,7 +48,17 @@ const Dashboard = () => {
       </div>
       </Card>
 
-      <Card className="grammar-progress" title="Grammar Progress"></Card>
+      <Card className="grammar-progress" title="Grammar Progress">
+      <div className="progress-wheels" >
+      <GrammarProgressBar jlptlevel={'N5'} backgroundColor={'#6BB895'} trailColor={'#569478'} percentComplete={50}></GrammarProgressBar>
+      <GrammarProgressBar jlptlevel={'N4'} backgroundColor={'#8ED9F5'} trailColor={'#75B8D0'} percentComplete={70}></GrammarProgressBar>
+      <GrammarProgressBar jlptlevel={'N3'} backgroundColor={'#55A6DA'} trailColor={'#4D97C7'} percentComplete={30}></GrammarProgressBar>
+      <GrammarProgressBar jlptlevel={'N2'} backgroundColor={'#C37AE1'} trailColor={'#AE6EC8'} percentComplete={15}></GrammarProgressBar>
+      <GrammarProgressBar jlptlevel={'N1'} backgroundColor={'#ED67A7'} trailColor={'#DB609B'} percentComplete={1}></GrammarProgressBar>
+
+
+      </div> 
+</Card>
     </div>
   );
 };
