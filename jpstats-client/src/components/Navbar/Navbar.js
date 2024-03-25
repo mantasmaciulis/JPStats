@@ -11,7 +11,7 @@ function Navbar() {
         <NavLink to="/" className="navbar-item">
           Overview
         </NavLink>
-        <NavLink exact to="/search" className="navbar-item">
+        <NavLink to="/search" className="navbar-item">
           Search
         </NavLink>
         <NavLink to="/accuracy" className="navbar-item">
