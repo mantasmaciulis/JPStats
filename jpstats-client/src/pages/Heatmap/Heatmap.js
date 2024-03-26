@@ -11,8 +11,8 @@ function Heatmap() {
     const fetchData = async () => {
       // New Reviews gets all the reviews for days that new words are learned.
         const url = isAllReviews 
-            ? 'http://95.217.23.79:5000/getAllReviews'
-            : 'http://95.217.23.79:5000/getNewReviewDays';
+            ? 'https://api.jpstats.mantasmaciulis.com/getAllReviews'
+            : 'https://api.jpstats.mantasmaciulis.com/getNewReviewDays';
 
         try {
             const response = await fetch(url);
