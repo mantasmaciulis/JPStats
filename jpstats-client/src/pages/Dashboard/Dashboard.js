@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import Card from "../../components/Card/Card";
 import JLPTCard from "../../components/JLPTCard/JLPTCard";
 import RecentStatsGraph from "../../components/RecentStatsGraph/RecentStatsGraph";
@@ -6,6 +6,7 @@ import VocabCount from "../../components/VocabCount/VocabCount";
 import "./Dashboard.css";
 import 'react-circular-progressbar/dist/styles.css';
 import GrammarProgressBar from "../../components/GrammarProgressBar/GrammarProgressBar";
+import { getStreak } from '../../apiJPStats';
 export const data = {
   datasets: [
     {
@@ -17,6 +18,25 @@ export const data = {
   ],
 };
 const Dashboard = () => {
+  const [streak, setStreak] = useState(() => {
+    const savedStreak = localStorage.getItem('streak');
+    return savedStreak ? JSON.parse(savedStreak) : 0;
+  });
+
+  useEffect(() => {
+    const fetchStreak = async () => {
+      try {
+        const streakValue = await getStreak();
+        localStorage.setItem('streak', JSON.stringify(streakValue));
+        setStreak(streakValue || 0);
+      } catch (error) {
+        console.error('Failed to fetch streak:', error);
+        setStreak(0); // Explicitly set streak to 0 on error
+      }
+    };
+
+    fetchStreak();
+  }, []);
   return (
     <div className="dashboard">
       
@@ -32,7 +52,7 @@ const Dashboard = () => {
         percentage={75}
         vocab={3244}
         days={388}
-        streak={69}
+        streak={streak}
         consistency={83}
       />
 
