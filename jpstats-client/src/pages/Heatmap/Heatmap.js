@@ -2,26 +2,20 @@ import "./Heatmap.css"
 import MyCalHeatmap from "../../components/MyCalHeatmap/MyCalHeatmap.tsx";
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card.js";
-
+import { getAllReviews, getNewReviewDays } from "../../apiJPStats"; // Import API functions
 function Heatmap() {
     const [reviewTimestamps, setReviewTimestamps] = useState([]);
     const [isAllReviews, setIsAllReviews] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      // New Reviews gets all the reviews for days that new words are learned.
-        const url = isAllReviews 
-            ? 'https://api.jpstats.mantasmaciulis.com/getAllReviews'
-            : 'https://api.jpstats.mantasmaciulis.com/getNewReviewDays';
-
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            setReviewTimestamps(data);
-        } catch (error) {
-            console.error('Error fetching review data:', error);
-        }
-    }
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const data = isAllReviews ? await getAllReviews() : await getNewReviewDays();
+              setReviewTimestamps(data);
+          } catch (error) {
+              console.error('Error fetching review data:', error);
+          }
+      };
 
     fetchData();
 }, [isAllReviews]);
