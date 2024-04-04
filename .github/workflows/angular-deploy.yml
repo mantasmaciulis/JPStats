@@ -26,3 +26,9 @@ jobs:
       run: |
         cd jpstats-client
         npm run build -- --prod
+    
+    - name: Upload build directory as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifacts
+        path: jpstats-client/build/
