@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -16,19 +16,15 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '21.6.2'
-
     - name: Install client dependencies
       run: |
-        cd jpstats-client
-        npm i
-      
+          cd jpstats-client
+          npm i
     - name: Build client
       run: |
-        cd jpstats-client
-        npm run build -- --prod
-    
-    - name: Upload build directory as artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: build-artifacts
-        path: jpstats-client/build/
+          cd jpstats-client
+          npm run build -- --pro
+    - name: Deploy Build to Serving Directory
+      run: |
+        rm -rf /var/www/html/* 
+        cp -R jpstats-client/build/* /var/www/html/
