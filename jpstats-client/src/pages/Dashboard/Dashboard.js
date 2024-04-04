@@ -6,21 +6,28 @@ import VocabCount from "../../components/VocabCount/VocabCount";
 import "./Dashboard.css";
 import 'react-circular-progressbar/dist/styles.css';
 import GrammarProgressBar from "../../components/GrammarProgressBar/GrammarProgressBar";
-import { getStreak } from '../../apiJPStats';
-export const data = {
-  datasets: [
-    {
-      label: "New words",
-      data: [100, 156, 120, 150, 43, 120, 90],
-      backgroundColor: "rgba(208, 76, 76, 0.85)",
-      borderColor: "rgb(0,0,0)",
-    },
-  ],
-};
+import { getStreak, getDaysStudiesCount, getRecentlyLearnedCounts, getConsistency, getTotalVocab } from '../../apiJPStats';
+
 const Dashboard = () => {
   const [streak, setStreak] = useState(() => {
     const savedStreak = localStorage.getItem('streak');
-    return savedStreak ? JSON.parse(savedStreak) : 0;
+    return (savedStreak && savedStreak !== "undefined") ? JSON.parse(savedStreak) : 0;
+  });
+  const [daysStudied, setDaysStudied] = useState(() => {
+    const savedDaysStudied = localStorage.getItem('days-studied');
+    return (savedDaysStudied && savedDaysStudied !== "undefined") ? JSON.parse(savedDaysStudied) : 0;
+  });
+  const [recentlyLearnedData, setRecentlyLearnedData] = useState(() => {
+    const savedRecentlyLearnedData = localStorage.getItem('recently-learned');
+    return (savedRecentlyLearnedData && savedRecentlyLearnedData !== "undefined") ? JSON.parse(savedRecentlyLearnedData) : [0,0,0,0,0,0,0];
+  });
+  const [consistency, setConsistency] = useState(() => {
+    const savedConsistency = localStorage.getItem('consistency');
+    return (savedConsistency && savedConsistency !== "undefined") ? JSON.parse(savedConsistency) : 0;
+  });
+  const [totalVocab, setTotalVocab] = useState(() => {
+    const savedTotalVocab = localStorage.getItem('total-vocab');
+    return (savedTotalVocab && savedTotalVocab !== "undefined") ? JSON.parse(savedTotalVocab) : 0;
   });
 
   useEffect(() => {
@@ -31,12 +38,76 @@ const Dashboard = () => {
         setStreak(streakValue || 0);
       } catch (error) {
         console.error('Failed to fetch streak:', error);
-        setStreak(0); // Explicitly set streak to 0 on error
+        setStreak(0);
       }
     };
-
     fetchStreak();
   }, []);
+
+  useEffect(() => {
+    const fetchConsistency = async () => {
+      try {
+        const consistencyValue = await getConsistency();
+        localStorage.setItem('consistency', JSON.stringify(consistencyValue));
+        setConsistency(consistencyValue || 0);
+      } catch (error) {
+        console.error('Failed to fetch streak:', error);
+        setStreak(0);
+      }
+    };
+    fetchConsistency();
+  }, []);
+
+  useEffect(() => {
+    const fetchDaysStudied = async () => {
+      try {
+        const daysValue = await getDaysStudiesCount();
+        localStorage.setItem('days-studied', JSON.stringify(daysValue));
+        setDaysStudied(daysValue || 0);
+      } catch (error) {
+        console.error('Failed to fetch streak:', error);
+        setDaysStudied(0);
+      }
+    };fetchDaysStudied();
+  }, []);
+
+  useEffect(() => {
+    const fetchRecentlyLearned = async () => {
+      try {
+        const learnedData = await getRecentlyLearnedCounts();
+        localStorage.setItem('recently-learned', JSON.stringify(learnedData));
+        setRecentlyLearnedData(learnedData);
+      } catch (error) {
+        console.error('Failed to fetch recent vocab:', error);
+        setRecentlyLearnedData([0,0,0,0,0,0,0]);
+      }
+    };fetchRecentlyLearned();
+  }, []);
+
+  useEffect(() => {
+    const fetchTotalVocab = async () => {
+      try {
+        const totalVocab = await getTotalVocab();
+        localStorage.setItem('total-vocab', JSON.stringify(totalVocab));
+        setTotalVocab(totalVocab);
+      } catch (error) {
+        console.error('Failed to fetch total vocab:', error);
+        setTotalVocab(0);
+      }
+    };fetchTotalVocab();
+  }, []);
+
+  const data = {
+    datasets: [
+      {
+        label: "New words",
+        data: recentlyLearnedData,
+        backgroundColor: "rgba(208, 76, 76, 0.85)",
+        borderColor: "rgb(0,0,0)",
+      },
+    ],
+  };
+  let percentage = (totalVocab / 10000) * 100;
   return (
     <div className="dashboard">
       
@@ -49,11 +120,11 @@ const Dashboard = () => {
 
       <JLPTCard
         title="Progress to JLPT N1"
-        percentage={75}
-        vocab={3244}
-        days={388}
+        percentage={percentage.toFixed(0)}
+        vocab={totalVocab}
+        days={daysStudied}
         streak={streak}
-        consistency={83}
+        consistency={consistency}
       />
 
       <Card className="words-by-memory" title="Words By Memory Level">
