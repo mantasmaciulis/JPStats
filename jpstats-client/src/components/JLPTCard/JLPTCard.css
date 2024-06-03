@@ -1,6 +1,5 @@
 .stats-container {
   display: grid;
-  grid-template-columns: repeat(2, 2fr);
   gap: 20px;
   align-content: center;
   width: 100%;
@@ -33,22 +32,9 @@
   -webkit-text-stroke: 1px #000000; 
 }
 
-/* Make stats header responsive to container
-   size in order to prevent overflow. */
-@container stats (max-width: 265px) {
-  .stat-item h2 {
-    font-size: 1.2em;
-  }
-}
-@container stats (max-width: 264px) {
-  .stat-item h2 {
-    font-size: 1em;
-  }
-}
 
 /* Switch stats to 4x1 and back
    to 2x2 on approporiate screens*/
-@media (max-width: 975px) {
   .stats-container {
     grid-template-columns: repeat(4, 4fr);
   }
@@ -58,18 +44,7 @@
   .stat-item h2 {
     font-size: 20px;
   }
-  .progress-to-jlpt {
-    height: 200px;
-  }
-}
-@media (max-width: 670px) {
-  .stats-container {
-    grid-template-columns: repeat(2, 2fr);
-  }
-  .stat-item p {
-    font-size: 30px;
-  }
-  .stat-item h2 {
-    font-size: 20px;
-  }
-}
+
+
+
+

@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Heatmap from "./pages/Heatmap/Heatmap";
 import "./App.css";
+import Graphs from "./pages/Graphs/Graphs";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard className="dashboard" />} />
         <Route path="/heatmap" element={<Heatmap className="heatmap" />} />
+        <Route path="/graphs" element={<Graphs className="graphs" />} />
       </Routes>
     </div>
   );

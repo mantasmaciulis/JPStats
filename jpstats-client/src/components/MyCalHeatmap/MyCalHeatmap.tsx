@@ -11,6 +11,7 @@ dayjs.extend(localeData);
 dayjs.locale("en");
 
 export default function MyCalHeatmap({timestamps, isAllReviews}) {
+    let colorDomain = isAllReviews ? [5,20,50,100,200,300,500] : [1, 3, 7, 10, 13, 16, 20]
     const calRef = useRef<CalHeatmap | null>(null);
     const [sideLength, setSideLength] = useState(0);
     const gutterSize = 4;
@@ -58,12 +59,11 @@ export default function MyCalHeatmap({timestamps, isAllReviews}) {
     const updateDimensions = () => {
         const parentDiv = document.getElementById("heatmap");
         const numberOfRows = 7; //7 days in a week
-        const numberOfColumns = Math.ceil((months * 30.5) / numberOfRows); 
-
+        const numberOfColumns = 51;
         const totalGutterWidth = gutterSize * (numberOfColumns - 1);
         if(parentDiv){
             const parentWidth = parentDiv?.offsetWidth;
-            const newSideLength = (parentWidth - totalGutterWidth) / numberOfColumns; 
+            const newSideLength = Math.min((parentWidth - totalGutterWidth) / numberOfColumns, 20); 
             setSideLength(newSideLength);
         }
     };
@@ -88,7 +88,7 @@ export default function MyCalHeatmap({timestamps, isAllReviews}) {
                 range: [
                   "#c7e9c0","#a1d99b","#74c476","#41ab5d","#238b45","#006d2c","#00441b"
                 ],
-                domain: [5,20,50,100,200,300,500],
+                domain: colorDomain,
               },
             },
             domain: {
@@ -148,7 +148,7 @@ export default function MyCalHeatmap({timestamps, isAllReviews}) {
             //remove event listener when the component unmounts
             return () => window.removeEventListener('resize', updateDimensions);
         }
-    }, [sideLength, isAllReviews, timestamps]);
+    }, [sideLength, timestamps]);
 
     return <div id='cal-heatmap'></div>;
 }

@@ -1,8 +1,10 @@
-/* Mobile */
+/* Changing padding based on display size to prevent
+   main content from being awkwardly large. */
+
 .dashboard {
   padding-left: 5%;
   padding-right: 5%;
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 0 auto; 
 }
 
@@ -13,7 +15,6 @@
   }
 }
 
-/* Tablet */
 @media (min-width: 1248px) {
   .dashboard {
     padding-left: 15%;
@@ -21,7 +22,6 @@
   }
 }
 
-/* Desktop */
 @media (min-width: 1700px) {
   .dashboard {
     padding-left: 20%;
