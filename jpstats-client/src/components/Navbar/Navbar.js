@@ -14,8 +14,8 @@ function Navbar() {
         <NavLink to="/search" className="navbar-item">
           Search
         </NavLink>
-        <NavLink to="/accuracy" className="navbar-item">
-          Accuracy
+        <NavLink to="/graphs" className="navbar-item">
+          Graphs
         </NavLink>
         <NavLink to="/heatmap" className="navbar-item">
           Heatmap
