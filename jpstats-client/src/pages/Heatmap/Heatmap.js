@@ -10,14 +10,16 @@ function Heatmap() {
 
     useEffect(() => {
         const cacheKey = isAllReviews ? 'allReviewsData' : 'newReviewsData';
-
         const savedData = localStorage.getItem(cacheKey);
+
         if (savedData) {
             setReviewTimestamps(JSON.parse(savedData));
+            //use cache first - then update. This prevents longer loading time and is useful
+            //as past review data does not change.
             const fetchData = async () => {
               try {
                   const data = isAllReviews ? await getAllReviews() : await getNewReviewDays();
-                  localStorage.setItem(cacheKey, JSON.stringify(data)); // Cache the data
+                  localStorage.setItem(cacheKey, JSON.stringify(data));
                   setReviewTimestamps(data);
               } catch (error) {
                   console.error('Error fetching review data:', error);
@@ -28,7 +30,8 @@ function Heatmap() {
             const fetchData = async () => {
                 try {
                     const data = isAllReviews ? await getAllReviews() : await getNewReviewDays();
-                    localStorage.setItem(cacheKey, JSON.stringify(data)); // Cache the data
+                    //Store data in cache to speed up future displaying of data.
+                    localStorage.setItem(cacheKey, JSON.stringify(data));
                     setReviewTimestamps(data);
                 } catch (error) {
                     console.error('Error fetching review data:', error);
@@ -39,28 +42,16 @@ function Heatmap() {
     }, [isAllReviews]);
 
     const [revBtnGroupActive, setRevBtnGroupActive] = useState('All Reviews');
-    const [sitesBtnGroupActive, setSitesBtnGroupActive] = useState('All Sites');
 
     const handleButtonClick = (name) => {
         setRevBtnGroupActive(name);
         setIsAllReviews(name === 'All Reviews');
     };
-
-    const handleButtonClick2 = (name) => {
-        setSitesBtnGroupActive(name);
-    };
-
     const revBtnGroup = [
         { name: 'All Reviews' },
         { name: 'New Reviews' },
     ];
-    const sitesBtnGroup = [
-        { name: 'All Sites' },
-        { name: 'JPDB' },
-        { name: 'BUNPRO' },
-        { name: 'ANKI' },
-    ];
-
+   
     return (
         <Card className="heatmap-card">
             <div className="heatmap-options">
@@ -77,18 +68,7 @@ function Heatmap() {
                     ))}
                 </div>
 
-                <div className="toggle-button-group">
-                    {sitesBtnGroup.map((button) => (
-                        <button
-                            key={button.name}
-                            className={`toggle-button ${sitesBtnGroupActive === button.name ? 'active2' : ''}`}
-                            style={{ backgroundColor: sitesBtnGroupActive === button.name ? button.color : '#D9D9D9' }}
-                            onClick={() => handleButtonClick2(button.name)}
-                        >
-                            {button.name}
-                        </button>
-                    ))}
-                </div>
+              
             </div>
 
             <hr className="divider"/>
@@ -96,9 +76,12 @@ function Heatmap() {
                 <div id="heatmap">
                     <MyCalHeatmap
                         timestamps={reviewTimestamps}
+                        isAllReviews={isAllReviews}
+
                     />
                 </div>
             ) : (
+                //TODO: Idea: Maybe we could have fancy frame instead?
                 <center>Heatmap Loading...</center>
             )}
         </Card>

@@ -72,3 +72,10 @@
 .heatmap-options .toggle-button-group:last-child {
   margin-right: 0;
 }
+
+@media (max-width: 1300px) {
+  .heatmap-card {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
