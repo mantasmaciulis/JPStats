@@ -32,7 +32,7 @@ const useFetchAndCache = (key, fetchFunc, defaultValue) => {
       }
     };
     fetchData();
-  }, [fetchFunc, key, defaultValue]);
+  }, []);
 
   return data;
 };
