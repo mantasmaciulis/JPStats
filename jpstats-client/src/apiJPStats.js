@@ -1,86 +1,57 @@
 const BASE_URL = 'https://api.jpstats.mantasmaciulis.com/';
 
-export const getAllReviews = async () => {
+const fetchData = async (endpoint) => {
   try {
-    const response = await fetch(`${BASE_URL}getAllReviews`);
-    if (!response.ok) throw new Error('Network response was not ok');
+    const response = await fetch(`${BASE_URL}${endpoint}`);
+    if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
     return await response.json();
   } catch (error) {
-    console.error('Error fetching all reviews:', error);
+    console.error(`Error fetching ${endpoint}:`, error);
     throw error;
   }
+};
+
+export const getAllReviews = async () => {
+  return await fetchData('getAllReviews');
 };
 
 export const getNewReviewDays = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}getNewReviewDays`);
-    if (!response.ok) throw new Error('Network response was not ok');
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching new review days:', error);
-    throw error;
-  }
+  return await fetchData('getNewReviewDays');
 };
 
 export const getStreak = async () => {
-    try {
-      const response = await fetch(`${BASE_URL}getStreak`);
-      if (!response.ok) throw new Error('Network response was not ok');
-      const data = await response.json();
-      return data.streak;
-    } catch (error) {
-      console.error('Error fetching streak:', error);
-      throw error;
-    }
-  };
+  const data = await fetchData('getStreak');
+  return data.streak;
+};
 
 export const getDaysStudiesCount = async () => {
-    try {
-        const response = await fetch(`${BASE_URL}getDaysStudied`);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-        return data["days-studied"];
-      } catch (error) {
-        console.error('Error fetching streak:', error);
-        throw error;
-      }
-}
+  const data = await fetchData('getDaysStudied');
+  return data["days-studied"];
+};
 
 export const getRecentlyLearnedCounts = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}getRecentNewCards`);
-    if (!response.ok) throw new Error('Network response was not ok');
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching streak:', error);
-    throw error;
-  }
-}
+  return await fetchData('getRecentNewCards');
+};
 
 export const getConsistency = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/getConsistency`);
-    if (!response.ok) throw new Error('Network response was not ok');
-    const consistency = await response.json();
-    return consistency['consistency'];
-
-  } catch (error) {
-    console.error('Error fetching consistency:', error);
-    throw error;
-  }
-}
+  const consistency = await fetchData('getConsistency');
+  return consistency['consistency'];
+};
 
 export const getTotalVocab = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}//getTotalVocab`);
-    if (!response.ok) throw new Error('Network response was not ok');
-    const totalVocab = await response.json();
-    console.log(totalVocab)
-    return totalVocab['total_vocab_count'];
+  const totalVocab = await fetchData('getTotalVocab');
+  console.log(totalVocab);
+  return totalVocab['total_vocab_count'];
+};
 
-  } catch (error) {
-    console.error('Error fetching total vocabß:', error);
-    throw error;
-  }
-}
+export const getNewVocabOverTime = async () => {
+  return await fetchData('vocabOverTime');
+};
+
+export const getNewVocabPerWeek = async () => {
+  return await fetchData('getNewReviewWeeks');
+};
+
+export const getCountsByLevel = async () => {
+  return await fetchData('countsByLevel');
+};
