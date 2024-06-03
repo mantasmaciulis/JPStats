@@ -1,38 +1,6 @@
 .dashboard {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
   gap: 20px;
   padding: 20px;
-}
-
-.dashboard .recently-learned {
-  grid-column: 1 / 2;
-  width: 92%;
-  height: 250px;
-}
-
-.dashboard .progress-to-jlpt {
-  grid-column: 2 / 3;
-  height: 250px;
-}
-
-.dashboard .words-by-memory,
-.dashboard .grammar-progress {
-  grid-column: 1 / -1;
-}
-
-@media (max-width: 975px) {
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-  .dashboard .progress-to-jlpt {
-    grid-column: 1 / -1;
-    height: auto;
-  }
-  .dashboard .recently-learned {
-    width: 84.8vw;
-    grid-column: 1 / -1;
-  }
 }
 .memory-cards, .progress-wheels{
   display: flex;
@@ -40,4 +8,7 @@
   flex-wrap: wrap;
 }
 
+.recently-learned, .progress-to-jlpt, .words-by-memory{
+  margin-bottom: 10px;
+}
 
