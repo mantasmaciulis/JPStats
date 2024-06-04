@@ -1,5 +1,5 @@
 .vocab-count-container {
-  --square-dimension: 100px;
+  --square-dimension: 95px;
 }
 
 .vocab-count-container {
@@ -27,4 +27,20 @@
     color: #F8FFFC;
     -webkit-text-stroke: 1.5px #000000;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  @media (max-width: 495px) {
+    .vocab-count-container {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+    .level {
+      font-size: 24px;
+    }
+    .count {
+      font-size: 30px;
+
+    }
   }

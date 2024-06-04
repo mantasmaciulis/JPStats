@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./RecentStatsGraph.css";
 import {
   Chart as ChartJS,
@@ -41,7 +41,7 @@ export const options = {
       },
       ticks: {
         color: function (context) {
-          if (context.tick && context.tick.label === "Today") {
+          if (context.tick && ( context.tick.label === "Today" || context.tick.label === "Now") ) {
             return "#61AE8B";
           }
           return "#D9D9D9";
@@ -68,8 +68,39 @@ export const options = {
   },
 };
 
-function getPreviousSixDays() {
-  const days = [
+function getPreviousSixDays(days, currentDayLabel) {
+  const today = new Date();
+  let labels = days.slice(today.getDay()).concat(days.slice(0, today.getDay()));
+  labels[labels.length - 1] = currentDayLabel;
+  return labels;
+}
+
+function RecentStatsGraph({ graphData }) {
+  //To make graph nicer for mobile users
+  const [isMobile, setIsMobile] = useState(false)
+
+  const handleResize = () => {
+    if (window.innerWidth < 650) {
+        setIsMobile(true)
+    } else {
+        setIsMobile(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+  })
+
+  const daysSmallScreen = [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thur",
+    "Fri",
+    "Sat",
+    "Sun",
+  ];
+  const daysBigScreen = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -78,14 +109,11 @@ function getPreviousSixDays() {
     "Saturday",
     "Sunday",
   ];
-  const today = new Date();
-  let labels = days.slice(today.getDay()).concat(days.slice(0, today.getDay()));
-  labels[labels.length - 1] = "Today";
-  return labels;
-}
 
-function RecentStatsGraph({ graphData }) {
-  const labels = getPreviousSixDays();
+  let days = isMobile ? daysSmallScreen : daysBigScreen
+  let currentDayLabel = isMobile ? "Now" : "Today"
+
+  const labels = getPreviousSixDays(days, currentDayLabel);
   const newData = {
     ...graphData,
     labels,

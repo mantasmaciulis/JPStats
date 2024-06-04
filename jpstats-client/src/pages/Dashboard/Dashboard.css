@@ -2,13 +2,24 @@
   gap: 20px;
   padding: 20px;
 }
-.memory-cards, .progress-wheels{
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
+.memory-cards{
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
 
+}
 .recently-learned, .progress-to-jlpt, .words-by-memory{
   margin-bottom: 10px;
 }
-
+@media (max-width: 965px) {
+  .memory-cards {
+    grid-template-columns: repeat(4, 2fr);
+    justify-items: center;
+  }
+  
+}
+@media (max-width: 495px) {
+  .memory-cards {
+    grid-template-columns: repeat(1, 8fr);
+    justify-items: self-start;
+  }
+}

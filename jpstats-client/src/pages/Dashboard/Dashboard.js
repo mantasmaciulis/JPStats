@@ -44,7 +44,8 @@ const Dashboard = () => {
     { bgColor: "#8ED9F5", lvColor: "#75B8D0" },
     { bgColor: "#8DBEF9", lvColor: "#7BA6DB" },
     { bgColor: "#55A6DA", lvColor: "#4D97C7" },
-    { bgColor: "#C37AE1", lvColor: "#AE6EC8" },
+    { bgColor: "#168DD9", lvColor: "#238ACE" },
+    { bgColor: "#B74EE2", lvColor: "#B15AD5" },
     { bgColor: "#ED67A7", lvColor: "#DB609B" }
   ];
 
@@ -97,6 +98,13 @@ const Dashboard = () => {
               vocabCount={level.count}
             />
           ))}
+              <VocabCount
+              bgColor={colors[7 % colors.length].bgColor}
+              lvColor={colors[7 % colors.length].lvColor}
+              level={8}
+              //Temporarily hardcode never forget count
+              vocabCount={2343}
+            />
         </div>
       </Card>
     </div>
