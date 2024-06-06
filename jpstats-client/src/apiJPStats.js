@@ -55,3 +55,11 @@ export const getNewVocabPerWeek = async () => {
 export const getCountsByLevel = async () => {
   return await fetchData('countsByLevel');
 };
+
+export const getVocabHistoryByMemoryLevel = async () => {
+  return await fetchData('getVocabHistoryByMemoryLevel');
+};
+
+export const getRetentionRates = async () => {
+  return await fetchData('getRetentionRates');
+};

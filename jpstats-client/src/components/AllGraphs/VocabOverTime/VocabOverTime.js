@@ -15,7 +15,7 @@ const VocabOverTime = ({data}) => {
             }
         },
         title: {
-            text: 'Total Words Known Over Time',
+            text: 'Total Vocabulary Known',
             align: 'left',
             style: {
                 color: '#FFFFFF' 
@@ -89,7 +89,7 @@ const VocabOverTime = ({data}) => {
             }
         },
         series: [{
-            name: 'Total Words Known',
+            name: 'Total Vocabulary Known',
             data: data,
             color: '#A020F0'
         }]

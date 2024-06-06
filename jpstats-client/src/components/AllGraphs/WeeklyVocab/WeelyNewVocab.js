@@ -3,30 +3,31 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { getNewVocabPerWeek } from '../../../apiJPStats';
 import more from 'highcharts/highcharts-more';
-import HC_more from 'highcharts/highcharts-more'; // In case you need extra features
+import HC_more from 'highcharts/highcharts-more';
 HC_more(Highcharts);
 const WeeklyNewVocab = ({data}) => {
 const options = {
 chart: {
     type: 'column',
-    backgroundColor: '#1A1A1D',  // Dark background
+    backgroundColor: '#1A1A1D',
             style: {
                 fontFamily: 'Arial'
             }
 },
 title: {
-    text: 'Weekly New Words',
+    text: 'Vocabulary Learned per Week',
     align: 'left',
     style: {
-        color: '#FFFFFF'  // White text
+        color: '#FFFFFF'
     }
 },
-subtitle: {
-    text:
-        'Source: <a target="_blank" ' +
-        'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>',
-    align: 'left'
-},
+//TODO: would be cool if this linked to an explanation or somethign.
+// subtitle: {
+//     text:
+//         'Source: <a target="_blank" ' +
+//         'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>',
+//     align: 'left'
+// },
 xAxis: {
     type: 'datetime',
     title: {
@@ -38,24 +39,24 @@ xAxis: {
     ],
     labels: {
         style: {
-            color: '#A0A0A3'  // Grey text for axis labels
+            color: '#A0A0A3'
         }
     },
-    lineColor: '#707073',  // Grey axis lines
-    minorGridLineColor: '#505053',  // Darker grid lines
-    tickColor: '#707073',  // Grey tick marks
+    lineColor: '#707073',
+    minorGridLineColor: '#505053',
+    tickColor: '#707073',
 },
 yAxis: {
     title: {
         text: 'Total Words Known',
         style: {
-            color: '#A0A0A3'  // Grey text
+            color: '#A0A0A3'
         }
     },
-    gridLineColor: '#505053',  // Dark grid lines
+    gridLineColor: '#505053',
     labels: {
         style: {
-            color: '#E0E0E3'  // Light grey text for labels
+            color: '#E0E0E3'
         }
     }
 },
@@ -64,9 +65,9 @@ legend: {
 },
 tooltip: {
     valueSuffix: 'words',
-    backgroundColor: 'rgba(0, 0, 0, 0.85)',  // Dark tooltip background
+    backgroundColor: 'rgba(0, 0, 0, 0.85)',
             style: {
-                color: '#A020F0'  // Bright text for tooltips
+                color: '#A020F0'
             }
 },
 plotOptions: {
