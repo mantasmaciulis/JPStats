@@ -1,0 +1,3 @@
+[submodule "jpstats-server/data-backups"]
+	path = jpstats-server/data-backups
+	url = git@github.com:mantasmaciulis/jpstats-backups.git
