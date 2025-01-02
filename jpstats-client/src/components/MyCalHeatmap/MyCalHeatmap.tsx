@@ -79,7 +79,7 @@ export default function MyCalHeatmap({timestamps, isAllReviews}) {
             defaultValue: null,
             source: timestamps, x: "date", y: "value" },
             verticalOrientation: true,
-            range:5,
+            range: new Date().getFullYear() - 2019, // Controls how many years to display after 2020 inclusive.
             animationDuration:0, 
             date: {start: new Date('2020-01-01')},
             scale: {
