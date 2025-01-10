@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import Card from "../../components/Card/Card";
 import JLPTCard from "../../components/JLPTCard/JLPTCard";
 import RecentStatsGraph from "../../components/RecentStatsGraph/RecentStatsGraph";
-import VocabCount from "../../components/VocabCount/VocabCount";
+import MemoryLevelsGraph from '../../components/MemoryLevelsGraph/MemoryLevelsGraph';
 import "./Dashboard.css";
 import { 
   getStreak, 
@@ -38,29 +38,29 @@ const useFetchAndCache = (key, fetchFunc, defaultValue) => {
 };
 
 const Dashboard = () => {
-  const colors = [
-    { bgColor: "#6BB895", lvColor: "#569478" },
-    { bgColor: "#9DDAD5", lvColor: "#8BBEBA" },
-    { bgColor: "#8ED9F5", lvColor: "#75B8D0" },
-    { bgColor: "#8DBEF9", lvColor: "#7BA6DB" },
-    { bgColor: "#55A6DA", lvColor: "#4D97C7" },
-    { bgColor: "#168DD9", lvColor: "#238ACE" },
-    { bgColor: "#B74EE2", lvColor: "#B15AD5" },
-    { bgColor: "#ED67A7", lvColor: "#DB609B" }
-  ];
-
   const streak = useFetchAndCache('streak', getStreak, 0);
   const daysStudied = useFetchAndCache('days-studied', getDaysStudiesCount, 0);
   const recentlyLearnedData = useFetchAndCache('recently-learned', getRecentlyLearnedCounts, [0,0,0,0,0,0,0]);
   const consistency = useFetchAndCache('consistency', getConsistency, 0);
   const totalVocab = useFetchAndCache('total-vocab', getTotalVocab, 0);
-  const vocabByLevel = useFetchAndCache('vocab-by-level', getCountsByLevel, []);
+  const vocabByLevel = useFetchAndCache('vocab-by-level', getCountsByLevel, [0,0,0,0,0,0,0,0]);
 
-  const data = {
+  const recently_studied_data = {
     datasets: [
       {
         label: "New words",
         data: recentlyLearnedData,
+        backgroundColor: "rgba(208, 76, 76, 0.85)",
+        borderColor: "rgb(0,0,0)",
+      },
+    ],
+  };
+
+  const memory_levels_data = {
+    datasets: [
+      {
+        label: "Vocabulary count",
+        data: vocabByLevel,
         backgroundColor: "rgba(208, 76, 76, 0.85)",
         borderColor: "rgb(0,0,0)",
       },
@@ -80,32 +80,18 @@ const Dashboard = () => {
         consistency={consistency}
       />
 
-      <Card className="recently-learned" title="Recently Learned Words">
+      <Card className="recently-learned" title="New Vocab Learned This Week">
         <RecentStatsGraph
           className="grid-item-align-bottom"
-          graphData={data}
+          graphData={recently_studied_data}
         ></RecentStatsGraph>
       </Card>
 
-      <Card className="words-by-memory" title="Words By Memory Level">
-        <div className="memory-cards">
-          {vocabByLevel.slice(2).map((level, index) => (
-            <VocabCount
-              key={index}
-              bgColor={colors[index % colors.length].bgColor}
-              lvColor={colors[index % colors.length].lvColor}
-              level={level._id}
-              vocabCount={level.count}
-            />
-          ))}
-              <VocabCount
-              bgColor={colors[7 % colors.length].bgColor}
-              lvColor={colors[7 % colors.length].lvColor}
-              level={8}
-              //Temporarily hardcode never forget count
-              vocabCount={2343}
-            />
-        </div>
+      <Card className="vocab-per-srs" title="Vocabulary Count per SRS Stage">
+        <MemoryLevelsGraph
+          className="grid-item-align-bottom"
+          graphData={memory_levels_data}
+        ></MemoryLevelsGraph>
       </Card>
     </div>
   );
